@@ -45,9 +45,11 @@ def main():
 
     ball = Ball(width / 2 - ball_width, height / 2 - ball_height)
 
+    # If left wall is hit
     if horizontal_direction[random.randint(0, 1)] == "Left":
         ball_vel_x *= -1
 
+    # If right wall is hit
     if vertical_direction[random.randint(0, 1)] == "Up":
         ball_vel_y *= -1
 
@@ -80,6 +82,7 @@ def main():
             if keys[pygame.K_ESCAPE]:
                 main_menu()
 
+        # Move one of the vertical bars using keys on keyboard
         keys = pygame.key.get_pressed()
         if keys[pygame.K_w] and p1.y - p1_vel > 0: # up
             p1.move(-p1_vel)
@@ -91,19 +94,21 @@ def main():
         if keys[pygame.K_DOWN] and p2.y + p2_vel + bar_height < height: # down
             p2.move(p2_vel)
 
+        # Update ball's position
         ball.move(ball_vel_x, ball_vel_y)
 
+        # Bounce of top or bottom of the window
         if ball.y <= 0 or ball.y + ball_height >= height:
             ball_vel_y *= -1
 
-
+        # Register collision between the ball and one of the vertical bars
         ball_collide_left = ball.convert_to_rect().colliderect(p1.convert_to_rect())
         ball_collide_right = ball.convert_to_rect().colliderect(p2.convert_to_rect())
 
+        # Reverse x direction of ball if it collides with one of the bars
         if ball_collide_left or ball_collide_right:
             ball_vel_x *= -1
 
-        
     pygame.quit()
 
 def main_menu():

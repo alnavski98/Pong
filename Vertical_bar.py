@@ -21,4 +21,4 @@ class Vertical_bar():
         return self.shape.get_rect(x=self.x, y=self.y)
 
     def get_pos(self):
-        return self.x, self.y
+        pass
