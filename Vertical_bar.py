@@ -4,10 +4,11 @@ import pygame
 bar_width = 25
 bar_height = 200
 
-class Vertical_bar():
-    def __init__(self, x, y):
+class Vertical_bar:
+    def __init__(self, x, y, points=0):
         self.x = x
         self.y = y
+        self.points = points
         self.shape = pygame.Surface((bar_width, bar_height))
         self.shape.fill((255, 255, 255))
 
@@ -20,5 +21,6 @@ class Vertical_bar():
     def convert_to_rect(self):
         return self.shape.get_rect(x=self.x, y=self.y)
 
-    def get_pos(self):
-        pass
+    def add_points(self):
+        self.points += 1
+        return self.points
